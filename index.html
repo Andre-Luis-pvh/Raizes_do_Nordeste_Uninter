@@ -6,202 +6,9 @@
 
   <title>Restaurante Sabor Gourmet</title>
 
-  <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family: Arial, sans-serif;
-      scroll-behavior: smooth;
-    }
-
-    body{
-      background:#f4f4f4;
-      color:#333;
-    }
-
-    /* HEADER */
-
-    header{
-      background:#c0392b;
-      color:white;
-      padding:20px;
-      position:sticky;
-      top:0;
-      z-index:1000;
-    }
-
-    header h1{
-      text-align:center;
-      margin-bottom:15px;
-    }
-
-    nav{
-      display:flex;
-      justify-content:center;
-      gap:25px;
-      flex-wrap:wrap;
-    }
-
-    nav a{
-      color:white;
-      text-decoration:none;
-      font-size:18px;
-      font-weight:bold;
-      transition:0.3s;
-      padding:8px 14px;
-      border-radius:6px;
-    }
-
-    nav a:hover{
-      background:white;
-      color:#c0392b;
-    }
-
-    /* SEÇÕES */
-
-    section{
-      padding:60px 20px;
-      max-width:1200px;
-      margin:auto;
-    }
-
-    h2{
-      margin-bottom:25px;
-      color:#c0392b;
-      font-size:32px;
-      text-align:center;
-    }
-
-    /* LOGIN */
-
-    .login-box{
-      background:white;
-      padding:30px;
-      border-radius:12px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.1);
-      max-width:500px;
-      margin:auto;
-    }
-
-    input{
-      width:100%;
-      padding:14px;
-      margin:12px 0;
-      border:1px solid #ccc;
-      border-radius:8px;
-      font-size:16px;
-    }
-
-    button{
-      background:#c0392b;
-      color:white;
-      border:none;
-      padding:14px 22px;
-      border-radius:8px;
-      cursor:pointer;
-      font-size:16px;
-      transition:0.3s;
-    }
-
-    button:hover{
-      background:#962d22;
-    }
-
-    /* CARDÁPIO */
-
-    .menu{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
-      gap:25px;
-    }
-
-    .item{
-      background:white;
-      border-radius:12px;
-      overflow:hidden;
-      box-shadow:0 4px 12px rgba(0,0,0,0.1);
-      transition:0.3s;
-    }
-
-    .item:hover{
-      transform:translateY(-5px);
-    }
-
-    .item img{
-      width:100%;
-      height:200px;
-      object-fit:cover;
-    }
-
-    .item-content{
-      padding:20px;
-      text-align:center;
-    }
-
-    .item h3{
-      margin-bottom:10px;
-    }
-
-    .price{
-      color:#27ae60;
-      font-size:22px;
-      margin-bottom:15px;
-      font-weight:bold;
-    }
-
-    /* CARRINHO */
-
-    .cart{
-      background:white;
-      padding:25px;
-      border-radius:12px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .cart-item{
-      display:flex;
-      justify-content:space-between;
-      margin:15px 0;
-      border-bottom:1px solid #ddd;
-      padding-bottom:10px;
-    }
-
-    .total{
-      margin-top:20px;
-      font-size:24px;
-      font-weight:bold;
-      color:#c0392b;
-    }
-
-    /* FIDELIDADE */
-
-    .fidelidade{
-      background:white;
-      padding:30px;
-      border-radius:12px;
-      text-align:center;
-      box-shadow:0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .pontos{
-      margin-top:20px;
-      font-size:36px;
-      color:#27ae60;
-      font-weight:bold;
-    }
-
-    footer{
-      background:#222;
-      color:white;
-      text-align:center;
-      padding:20px;
-      margin-top:40px;
-    }
-
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- HEADER -->
@@ -209,7 +16,6 @@
 
     <h1>🍽 Restaurante Sabor Gourmet</h1>
 
-    <!-- MENU CLICÁVEL -->
     <nav>
       <a href="#login">Login</a>
       <a href="#cardapio">Cardápio</a>
@@ -234,7 +40,7 @@
         Entrar
       </button>
 
-      <p id="mensagemLogin" style="margin-top:15px;"></p>
+      <p id="mensagemLogin"></p>
 
     </div>
 
@@ -263,6 +69,7 @@
           </button>
 
         </div>
+
       </div>
 
       <!-- ITEM 2 -->
@@ -281,6 +88,7 @@
           </button>
 
         </div>
+
       </div>
 
       <!-- ITEM 3 -->
@@ -299,6 +107,7 @@
           </button>
 
         </div>
+
       </div>
 
       <!-- ITEM 4 -->
@@ -317,6 +126,7 @@
           </button>
 
         </div>
+
       </div>
 
     </div>
@@ -336,7 +146,7 @@
         Total: R$ <span id="total">0.00</span>
       </div>
 
-      <button style="margin-top:20px;" onclick="finalizarPedido()">
+      <button class="btn-finalizar" onclick="finalizarPedido()">
         Finalizar Pedido
       </button>
 
@@ -367,95 +177,7 @@
     © 2026 Restaurante Sabor Gourmet
   </footer>
 
-  <script>
-
-    // LOGIN
-
-    function fazerLogin(){
-
-      let usuario = document.getElementById("usuario").value;
-      let senha = document.getElementById("senha").value;
-
-      let mensagem = document.getElementById("mensagemLogin");
-
-      if(usuario === "admin" && senha === "1234"){
-
-        mensagem.innerHTML = "✅ Login realizado com sucesso!";
-        mensagem.style.color = "green";
-
-      }else{
-
-        mensagem.innerHTML = "❌ Usuário ou senha incorretos!";
-        mensagem.style.color = "red";
-      }
-    }
-
-    // CARRINHO
-
-    let carrinho = [];
-    let total = 0;
-    let pontos = 0;
-
-    function adicionarCarrinho(nome, preco){
-
-      carrinho.push({
-        nome:nome,
-        preco:preco
-      });
-
-      total += preco;
-
-      atualizarCarrinho();
-    }
-
-    function atualizarCarrinho(){
-
-      let lista = document.getElementById("listaCarrinho");
-
-      lista.innerHTML = "";
-
-      carrinho.forEach(item => {
-
-        lista.innerHTML += `
-          <div class="cart-item">
-            <span>${item.nome}</span>
-            <span>R$ ${item.preco.toFixed(2)}</span>
-          </div>
-        `;
-      });
-
-      document.getElementById("total").innerText =
-        total.toFixed(2);
-    }
-
-    // FINALIZAR PEDIDO
-
-    function finalizarPedido(){
-
-      if(carrinho.length === 0){
-
-        alert("Seu carrinho está vazio!");
-        return;
-      }
-
-      // 1 ponto a cada R$10 gastos
-      let pontosGanhos = Math.floor(total / 10);
-
-      pontos += pontosGanhos;
-
-      document.getElementById("pontos").innerText = pontos;
-
-      alert(
-        `Pedido finalizado!\nVocê ganhou ${pontosGanhos} pontos ⭐`
-      );
-
-      carrinho = [];
-      total = 0;
-
-      atualizarCarrinho();
-    }
-
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>
